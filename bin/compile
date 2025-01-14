@@ -99,6 +99,5 @@ if [[ -f $BUILD_DIR/nginx/https_cert/test.alux.fun/privkey.pem ]]; then
 else
 	echo '-----> nginx-buildpack: Custom test.alux.fun/privkey.pem not found in lualib/http_sig.'
 fi
-cp -r $BUILD_DIR/openresty/*$BUILD_DIR
 rm -f /app/openresty
 export PATH="$OLD_PATH"
