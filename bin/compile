@@ -11,7 +11,7 @@ echo "-----> Installing OpenResty ..."
 tar -zxf "dist/openresty-$STACK".tar.gz -C "$BUILD_DIR"
 cp -a conf/nginx.conf.default "$BUILD_DIR/openresty/nginx/conf"
 cp -r "bin/brotli" "$BUILD_DIR/brotli"
-mkdir "$BUILD_DIR/bin"
+mkdir -p "$BUILD_DIR/bin"
 cp -a bin/startopenresty "$BUILD_DIR/bin/startopenresty"
 
 # Add a profile.d script to add openresty tools and luarocks to PATH
