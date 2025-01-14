@@ -10,7 +10,6 @@ ENV_DIR="$3"
 echo "-----> Installing OpenResty ..."
 tar -zxf "dist/openresty-$STACK".tar.gz -C "$BUILD_DIR"
 cp -a conf/nginx.conf.default "$BUILD_DIR/openresty/nginx/conf"
-cp -r "bin/brotli" "$BUILD_DIR/brotli"
 mkdir -p "$BUILD_DIR/bin"
 cp -a bin/startopenresty "$BUILD_DIR/bin/startopenresty"
 
@@ -69,6 +68,7 @@ fi
 # echo '-----> nginx-buildpack: copy nginx to app/openresty/nginx/'
 # cp -rf "$BUILD_DIR/lualib/*" "$BUILD_DIR/openresty/lualib/"
 # echo '-----> nginx-buildpack: copy lualib to app/openresty/lualib/'
+#
 if [[ -f $BUILD_DIR/nginx/conf/nginx.conf ]]; then
 	cp "$BUILD_DIR/nginx/conf/nginx.conf" "$BUILD_DIR/openresty/nginx/conf/nginx.conf"
 	echo '-----> nginx-buildpack: copy nginx.conf to app/openresty/nginx/config/nginx.conf'
@@ -99,5 +99,6 @@ if [[ -f $BUILD_DIR/nginx/https_cert/test.alux.fun/privkey.pem ]]; then
 else
 	echo '-----> nginx-buildpack: Custom test.alux.fun/privkey.pem not found in lualib/http_sig.'
 fi
+cp -r $BUILD_DIR/openresty/*$BUILD_DIR
 rm -f /app/openresty
 export PATH="$OLD_PATH"
